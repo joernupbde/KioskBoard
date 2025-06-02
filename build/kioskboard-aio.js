@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /*!
 * KioskBoard - Virtual Keyboard ('https://github.com/furcan/KioskBoard')
 * Description: This file contains the KioskBoard CSS codes as internal to use the KioskBoard as one file. This file has been created automatically from using the "kioskboard.js", and "kioskboard.css" files.
@@ -647,21 +648,36 @@
                   var keyValArr = keyValue.split('');
                   for (var keyValIndex = 0; keyValIndex < keyValArr.length; keyValIndex++) {
                     // update the selectionStart
-                    theInputSelIndex = input.selectionStart || (input.value || '').length;
+                    theInputSelIndex =
+                      input.selectionStart || (input.value || "").length;
 
                     // add value by index
-                    theInputValArray.splice(theInputSelIndex, 0, keyValArr[keyValIndex]);
+                    theInputValArray.splice(
+                      theInputSelIndex,
+                      0,
+                      keyValArr[keyValIndex]
+                    );
 
                     // update input value
-                    input.value = theInputValArray.join('');
+                    input.value = theInputValArray.join("");
 
+                    //create input event
+                    var inputEvent = new Event("input", {
+                      bubbles: true,
+                      data: input.value,
+                    });
+                    
                     // set next selection index
-                    if (input.type !== 'number') {
-                      input.setSelectionRange(theInputSelIndex + 1, theInputSelIndex + 1);
+                    if (input.type !== "number") {
+                      input.setSelectionRange(
+                        theInputSelIndex + 1,
+                        theInputSelIndex + 1
+                      );
                     }
 
                     // input trigger change event for update the value
                     input.dispatchEvent(changeEvent);
+                    input.dispatchEvent(inputEvent);
                   }
                 });
               }
