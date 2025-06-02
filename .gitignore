@@ -8,6 +8,7 @@ node_modules/
 *.DS_Store
 .code-workspace
 *.code-workspace
+/dist/kioskboard*-2.3.0.min.*
 
 # IDE/Editor
 .vscode/
